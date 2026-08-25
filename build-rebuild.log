@@ -1,0 +1,712 @@
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin-shared:jar UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:classes UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-settings-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-gradle-plugin:expo-autolinking-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-module-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-module-gradle-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileKotlin UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:pluginDescriptors UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:processResources UP-TO-DATE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-gradle-plugin:expo-autolinking-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :expo-module-gradle-plugin:compileJava NO-SOURCE
+> Task :expo-module-gradle-plugin:classes UP-TO-DATE
+> Task :expo-module-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :
+[32m[ExpoRootProject][0m Using the following versions:
+  - buildTools:  [32m36.0.0[0m
+  - minSdk:      [32m24[0m
+  - compileSdk:  [32m36[0m
+  - targetSdk:   [32m36[0m
+  - ndk:         [32m27.1.12297006[0m
+  - kotlin:      [32m2.1.20[0m
+  - ksp:         [32m2.1.20-2.0.1[0m
+
+> Configure project :expo
+
+Using expo modules
+  - [32mexpo-constants[0m (18.0.14)
+  - [32mexpo-modules-core[0m (3.0.30)
+  - [33m[?][0m [32mexpo-asset[0m (12.0.13)
+  - [33m[?][0m [32mexpo-crypto[0m (15.0.9)
+  - [33m[?][0m [32mexpo-file-system[0m (19.0.24)
+  - [33m[?][0m [32mexpo-font[0m (14.0.12)
+  - [33m[?][0m [32mexpo-keep-awake[0m (15.0.8)
+  - [33m[?][0m [32mexpo-linking[0m (8.0.12)
+  - [33m[?][0m [32mexpo-print[0m (15.0.8)
+  - [33m[?][0m [32mexpo-sharing[0m (14.0.8)
+  - [33m[?][0m [32mexpo-sqlite[0m (16.0.10)
+
+
+> Task :react-native-safe-area-context:preBuild UP-TO-DATE
+> Task :react-native-screens:preBuild UP-TO-DATE
+> Task :expo-modules-core:preBuild UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:preBuild UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:preReleaseBuild UP-TO-DATE
+> Task :expo-modules-core:preReleaseBuild UP-TO-DATE
+> Task :react-native-safe-area-context:preReleaseBuild UP-TO-DATE
+> Task :react-native-screens:preReleaseBuild UP-TO-DATE
+> Task :expo:generatePackagesList UP-TO-DATE
+> Task :app:generateAutolinkingPackageList UP-TO-DATE
+> Task :expo:preBuild UP-TO-DATE
+> Task :expo:preReleaseBuild UP-TO-DATE
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :expo:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :expo:mergeReleaseNativeLibs NO-SOURCE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseNativeLibs NO-SOURCE
+> Task :react-native-safe-area-context:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :app:generateReactNativeEntryPoint UP-TO-DATE
+> Task :expo:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :brooons_react-native-bluetooth-escpos-printer:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :expo:generateReleaseBuildConfig UP-TO-DATE
+> Task :react-native-safe-area-context:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :expo:generateReleaseResValues UP-TO-DATE
+> Task :react-native-safe-area-context:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseBuildConfig UP-TO-DATE
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseResValues UP-TO-DATE
+> Task :expo:generateReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseBuildConfig UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseResValues UP-TO-DATE
+> Task :expo:packageReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseResources UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:packageReleaseResources UP-TO-DATE
+> Task :expo:parseReleaseLocalResources UP-TO-DATE
+> Task :expo:generateReleaseRFile UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:parseReleaseLocalResources UP-TO-DATE
+> Task :expo:javaPreCompileRelease UP-TO-DATE
+> Task :expo:writeReleaseAarMetadata UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseRFile UP-TO-DATE
+> Task :expo:extractDeepLinksRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:javaPreCompileRelease UP-TO-DATE
+> Task :expo:processReleaseManifest UP-TO-DATE
+> Task :react-native-safe-area-context:packageReleaseResources UP-TO-DATE
+> Task :expo:compileReleaseLibraryResources UP-TO-DATE
+> Task :expo:prepareReleaseArtProfile UP-TO-DATE
+> Task :react-native-safe-area-context:parseReleaseLocalResources UP-TO-DATE
+> Task :expo:mergeReleaseShaders UP-TO-DATE
+> Task :expo:compileReleaseShaders NO-SOURCE
+> Task :expo:generateReleaseAssets UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseRFile UP-TO-DATE
+> Task :expo:mergeReleaseAssets UP-TO-DATE
+> Task :expo:extractProguardFiles UP-TO-DATE
+> Task :expo:prepareLintJarForPublish UP-TO-DATE
+> Task :expo:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :expo:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :expo:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :app:createBundleReleaseJsAndAssets UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:writeReleaseAarMetadata UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:extractDeepLinksRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:processReleaseManifest UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:compileReleaseLibraryResources UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:prepareReleaseArtProfile UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseShaders UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:compileReleaseShaders NO-SOURCE
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseAssets UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseAssets UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:processReleaseJavaRes NO-SOURCE
+> Task :brooons_react-native-bluetooth-escpos-printer:createFullJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:extractProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseKotlin UP-TO-DATE
+> Task :react-native-safe-area-context:javaPreCompileRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseLintModel UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:prepareLintJarForPublish UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:stripReleaseDebugSymbols NO-SOURCE
+> Task :brooons_react-native-bluetooth-escpos-printer:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToDirRelease UP-TO-DATE
+> Task :react-native-safe-area-context:writeReleaseAarMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:extractDeepLinksRelease UP-TO-DATE
+> Task :react-native-safe-area-context:processReleaseManifest UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:extractReleaseAnnotations UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseLibraryResources UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:prepareReleaseArtProfile UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseJavaResource UP-TO-DATE
+> Task :react-native-safe-area-context:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:syncReleaseLibJars UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseShaders UP-TO-DATE
+> Task :react-native-safe-area-context:compileReleaseShaders NO-SOURCE
+> Task :react-native-safe-area-context:generateReleaseAssets UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:bundleReleaseLocalLintAar UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseAssets UP-TO-DATE
+> Task :react-native-safe-area-context:processReleaseJavaRes UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :react-native-safe-area-context:createFullJarRelease UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:extractProguardFiles UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:generateReleaseLintVitalModel UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:bundleReleaseAar UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseLintModel UP-TO-DATE
+> Task :react-native-safe-area-context:prepareLintJarForPublish UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :react-native-safe-area-context:stripReleaseDebugSymbols NO-SOURCE
+> Task :react-native-safe-area-context:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :react-native-safe-area-context:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :react-native-safe-area-context:extractReleaseAnnotations UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseJavaResource UP-TO-DATE
+> Task :react-native-safe-area-context:syncReleaseLibJars UP-TO-DATE
+> Task :react-native-safe-area-context:bundleReleaseLocalLintAar UP-TO-DATE
+> Task :react-native-safe-area-context:lintVitalAnalyzeRelease UP-TO-DATE
+> Task :react-native-safe-area-context:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :react-native-safe-area-context:generateReleaseLintVitalModel UP-TO-DATE
+> Task :react-native-safe-area-context:bundleReleaseAar UP-TO-DATE
+> Task :react-native-safe-area-context:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:mergeReleaseResources UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:verifyReleaseResources UP-TO-DATE
+> Task :brooons_react-native-bluetooth-escpos-printer:assembleRelease UP-TO-DATE
+> Task :react-native-safe-area-context:mergeReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:verifyReleaseResources UP-TO-DATE
+> Task :react-native-safe-area-context:assembleRelease UP-TO-DATE
+> Task :expo-constants:createExpoConfig
+> Task :expo-constants:preBuild
+> Task :app:preBuild
+> Task :expo-constants:preReleaseBuild
+> Task :app:preReleaseBuild
+> Task :expo-constants:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :expo-constants:mergeReleaseNativeLibs NO-SOURCE
+> Task :expo-constants:copyReleaseJniLibsProjectOnly UP-TO-DATE
+> Task :expo-constants:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :expo-constants:generateReleaseBuildConfig UP-TO-DATE
+> Task :expo-constants:generateReleaseResValues UP-TO-DATE
+> Task :expo-constants:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseJniLibFolders
+> Task :expo-constants:packageReleaseResources UP-TO-DATE
+> Task :expo-constants:parseReleaseLocalResources UP-TO-DATE
+> Task :expo-constants:generateReleaseRFile UP-TO-DATE
+> Task :expo-constants:javaPreCompileRelease UP-TO-DATE
+> Task :expo-constants:writeReleaseAarMetadata UP-TO-DATE
+> Task :expo-constants:extractDeepLinksRelease UP-TO-DATE
+> Task :expo-constants:processReleaseManifest UP-TO-DATE
+> Task :expo-constants:compileReleaseLibraryResources UP-TO-DATE
+> Task :expo-constants:prepareReleaseArtProfile UP-TO-DATE
+> Task :expo-constants:mergeReleaseShaders UP-TO-DATE
+> Task :expo-constants:compileReleaseShaders NO-SOURCE
+> Task :expo-constants:generateReleaseAssets UP-TO-DATE
+> Task :expo-constants:mergeReleaseAssets UP-TO-DATE
+> Task :expo-constants:extractProguardFiles UP-TO-DATE
+> Task :expo-constants:prepareLintJarForPublish UP-TO-DATE
+> Task :expo-constants:stripReleaseDebugSymbols NO-SOURCE
+> Task :expo-constants:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :expo-constants:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :expo-constants:writeReleaseLintModelMetadata UP-TO-DATE
+> Task :expo-constants:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :expo-constants:mergeReleaseResources UP-TO-DATE
+> Task :expo-constants:verifyReleaseResources UP-TO-DATE
+> Task :app:generateReleaseBuildConfig
+> Task :app:generateReleaseResValues
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:generateReleaseResources
+> Task :react-native-screens:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :app:packageReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :app:javaPreCompileRelease
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:parseReleaseLocalResources
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[arm64-v8a]
+> Task :react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :app:mergeExtDexRelease
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[arm64-v8a]
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :app:extractReleaseVersionControlInfo
+> Task :app:extractProguardFiles
+> Task :app:collectReleaseDependencies
+> Task :app:sdkReleaseDependencyData
+> Task :app:validateSigningRelease
+> Task :app:writeReleaseAppMetadata
+> Task :app:writeReleaseSigningConfigVersions
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[armeabi-v7a]
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[armeabi-v7a]
+> Task :expo-modules-core:configureCMakeRelWithDebInfo[x86]
+
+> Task :react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a] FAILED
+C/C++: ninja: error: manifest 'build.ninja' still dirty after 100 tries
+
+> Task :expo-modules-core:buildCMakeRelWithDebInfo[x86]
+
+[Incubating] Problems report is available at: file:///C:/pos-app/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':react-native-screens:buildCMakeRelWithDebInfo[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\itai\Desktop\ElectronNewRepo-master\ElectronPos\ElectronPos\pos-app\node_modules\react-native-screens\android\.cxx\RelWithDebInfo\6o3c2yf6\arm64-v8a'
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  [0/1] Re-running CMake...
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: C:/Users/itai/Desktop/ElectronNewRepo-master/ElectronPos/ElectronPos/pos-app/node_modules/react-native-screens/android/.cxx/RelWithDebInfo/6o3c2yf6/arm64-v8a
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\itai\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\itai\\Desktop\\ElectronNewRepo-master\\ElectronPos\\ElectronPos\\pos-app\\node_modules\\react-native-screens\\android\\.cxx\\RelWithDebInfo\\6o3c2yf6\\arm64-v8a" ^
+        rnscreens
+    from C:\Users\itai\Desktop\ElectronNewRepo-master\ElectronPos\ElectronPos\pos-app\node_modules\react-native-screens\android
+  ninja: error: manifest 'build.ninja' still dirty after 100 tries
+  
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 53s
+184 actionable tasks: 30 executed, 154 up-to-date

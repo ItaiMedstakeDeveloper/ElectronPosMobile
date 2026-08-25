@@ -1,0 +1,38 @@
+// Modernised for Expo SDK 54 / RN 0.81 / AGP 8+.
+// The original pinned com.android.tools.build:gradle:3.1.4 in its own
+// buildscript block, which forced Gradle to download an ancient AGP (that no
+// longer resolves) and is incompatible with the app's toolchain. The module
+// now inherits AGP from the root project and uses AndroidX (the Java sources
+// already import androidx.core), so the legacy support-v4 dep is dropped.
+
+apply plugin: 'com.android.library'
+
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+android {
+    namespace "cn.jystudio.bluetooth"
+    compileSdkVersion safeExtGet('compileSdkVersion', 36)
+
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 24)
+        targetSdkVersion safeExtGet('targetSdkVersion', 36)
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    implementation 'com.facebook.react:react-android'
+    implementation 'androidx.core:core:1.13.1'
+    implementation "com.google.zxing:core:3.3.0"
+}

@@ -87,16 +87,19 @@ const s = StyleSheet.create({
   nav: { flex: 1 },
   navContent: { paddingBottom: spacing.md },
   account: {
+    marginTop: spacing.md,
+    paddingTop: spacing.md,
     borderTopWidth: 1,
     borderTopColor: colors.sidebarHover,
-    paddingTop: spacing.md,
     gap: spacing.sm,
   },
   accountRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
-    paddingHorizontal: spacing.sm,
+    padding: spacing.sm,
+    borderRadius: radius.md,
+    backgroundColor: 'rgba(255,255,255,0.04)',
   },
   avatar: {
     width: 34,
@@ -115,7 +118,8 @@ const s = StyleSheet.create({
     gap: spacing.sm,
     paddingVertical: 10,
     paddingHorizontal: spacing.sm,
-    borderRadius: radius.sm,
+    borderRadius: radius.md,
+    backgroundColor: 'rgba(255,255,255,0.04)',
   },
   logoutText: { color: '#cfd2d6', fontSize: 15, fontWeight: '500' },
 });

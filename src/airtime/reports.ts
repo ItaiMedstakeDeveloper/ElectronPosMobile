@@ -100,7 +100,7 @@ function safeName(name: string): string {
   return name.replace(/[^a-z0-9-_]+/gi, "-").toLowerCase();
 }
 
-/** Write a CSV to a temp file and open the share sheet (download/save). */
+/**Write a CSV to a temp file and open the share sheet (download/save).*/
 export async function exportCsv(filename: string, csv: string): Promise<void> {
   const FileSystem: any = require("expo-file-system/legacy");
   const Sharing: any = require("expo-sharing");

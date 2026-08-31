@@ -46,7 +46,7 @@ export function NavMenu({
     const t = theme(dark);
 
     return (
-        <View style={{ gap: 2 }}>
+        <View style={{ gap: 4 }}>
             {sections.map((sec) => {
                 if (sec.type === "link") {
                     const active = isActive(pathname, sec.href);
@@ -195,13 +195,14 @@ function theme(dark?: boolean) {
     const activeColor = dark ? colors.accent : colors.primary;
     const hoverBg = dark ? colors.sidebarHover : colors.bg;
     const activeBg = dark ? colors.accentSoft : colors.primarySoft;
+    const railColor = dark ? "rgba(255,255,255,0.10)" : colors.border;
 
     const styles = StyleSheet.create({
         groupHeader: {
             flexDirection: "row",
             alignItems: "center",
             gap: spacing.sm,
-            paddingVertical: 11,
+            paddingVertical: 12,
             paddingHorizontal: spacing.md,
             borderRadius: radius.md,
         },
@@ -212,21 +213,29 @@ function theme(dark?: boolean) {
             fontSize: 15,
             fontWeight: "600",
         },
-        children: { paddingLeft: spacing.md, marginBottom: 2 },
+        // Nested items hang off a subtle vertical rail so the hierarchy reads
+        // clearly instead of looking like a flat indented list.
+        children: {
+            marginLeft: spacing.md + 4,
+            paddingLeft: spacing.sm,
+            marginTop: 2,
+            marginBottom: 4,
+            borderLeftWidth: 1,
+            borderLeftColor: railColor,
+            gap: 2,
+        },
         item: {
             flexDirection: "row",
             alignItems: "center",
             gap: spacing.sm,
-            paddingVertical: 11,
+            paddingVertical: 12,
             paddingHorizontal: spacing.md,
             borderRadius: radius.md,
         },
-        itemChild: { paddingVertical: 9 },
+        itemChild: { paddingVertical: 9, paddingHorizontal: spacing.sm },
+        // Active items use a clean filled pill; icon + label carry the accent color.
         itemActive: {
             backgroundColor: activeBg,
-            borderLeftWidth: 3,
-            borderLeftColor: activeColor,
-            paddingLeft: spacing.md - 3,
         },
         itemLabel: {
             flex: 1,

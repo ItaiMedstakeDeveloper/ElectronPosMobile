@@ -35,9 +35,14 @@ function hash(s: string) {
 
 export default function Sell() {
   const router = useRouter();
-  const { products } = useData();
+  const { products, categories } = useData();
   const { add, lines, subtotal, count } = useCart();
   const [query, setQuery] = useState("");
+  // Which browse mode: the flat "All Items" grid, or drill into "Categories".
+  const [tab, setTab] = useState<"all" | "categories">("all");
+  // In the categories tab, the category we've drilled into (null = show the
+  // list of category cards).
+  const [catId, setCatId] = useState<string | null>(null);
   const { width } = useWindowDimensions();
   const cols = width >= 1100 ? 4 : width >= 700 ? 3 : 2;
 
@@ -47,14 +52,37 @@ export default function Sell() {
     return m;
   }, [lines]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return products.items;
-    return products.items.filter(
-      (p) =>
-        p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q),
-    );
-  }, [query, products.items]);
+  const q = query.trim().toLowerCase();
+  const matches = (p: Product) =>
+    p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q);
+
+  // Products shown in the grid: everything (All Items) or one category, each
+  // narrowed by the search box.
+  const gridProducts = useMemo(() => {
+    let items = products.items;
+    if (tab === "categories") items = items.filter((p) => p.categoryId === catId);
+    return q ? items.filter(matches) : items;
+  }, [tab, catId, q, products.items]);
+
+  // Category cards (with product counts), filtered by search on the name.
+  const catCards = useMemo(() => {
+    const cards = categories.items.map((c) => ({
+      ...c,
+      count: products.items.filter((p) => p.categoryId === c.id).length,
+    }));
+    return q ? cards.filter((c) => c.name.toLowerCase().includes(q)) : cards;
+  }, [categories.items, products.items, q]);
+
+  const switchTab = (next: "all" | "categories") => {
+    setTab(next);
+    setCatId(null);
+  };
+
+  const activeCat = catId
+    ? categories.items.find((c) => c.id === catId)
+    : null;
+  // Show the category picker when in the categories tab with nothing drilled into.
+  const showCategoryList = tab === "categories" && !catId;
 
   return (
     <View style={s.root}>
@@ -79,45 +107,117 @@ export default function Sell() {
             </Pressable>
           ) : null}
         </View>
-      </View>
 
-      {/* Product grid */}
-      <ScrollView
-        contentContainerStyle={s.gridContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={s.grid}>
-          {filtered.map((p) => {
-            const inCart = qtyById[p.id] ?? 0;
+        {/* Browse tabs: segmented pill */}
+        <View style={s.segment}>
+          {(
+            [
+              ["all", "All Items"],
+              ["categories", "Categories"],
+            ] as const
+          ).map(([key, label]) => {
+            const active = tab === key;
             return (
               <Pressable
-                key={p.id}
-                style={[s.tile, { flexBasis: `${100 / cols}%` }]}
-                onPress={() => add(p)}
+                key={key}
+                style={[s.segmentBtn, active && s.segmentBtnActive]}
+                onPress={() => switchTab(key)}
               >
-                <View style={s.tileInner}>
-                  <View style={[s.thumb, { backgroundColor: tileColor(p.id) }]}>
-                    <Text style={s.thumbText}>
-                      {p.name.charAt(0).toUpperCase()}
-                    </Text>
-                    {inCart > 0 ? (
-                      <View style={s.countBadge}>
-                        <Text style={s.countBadgeText}>{inCart}</Text>
-                      </View>
-                    ) : null}
-                  </View>
-                  <Text style={s.tileName} numberOfLines={2}>
-                    {p.name}
-                  </Text>
-                  <Text style={s.tilePrice}>{currency(p.price)}</Text>
-                </View>
+                <Text style={[s.segmentText, active && s.segmentTextActive]}>
+                  {label}
+                </Text>
               </Pressable>
             );
           })}
         </View>
-        {filtered.length === 0 ? (
-          <Text style={s.empty}>No products match your search.</Text>
+
+        {/* Drill-down header once inside a category */}
+        {activeCat ? (
+          <Pressable style={s.backRow} onPress={() => setCatId(null)}>
+            <Ionicons name="chevron-back" size={20} color={colors.primary} />
+            <Text style={s.backText}>Categories</Text>
+            <Text style={s.crumbSep}>/</Text>
+            <Text style={s.crumbCurrent}>{activeCat.name}</Text>
+          </Pressable>
         ) : null}
+      </View>
+
+      {/* Content: category cards, or the product grid */}
+      <ScrollView
+        contentContainerStyle={s.gridContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {showCategoryList ? (
+          <>
+            <View style={s.grid}>
+              {catCards.map((c) => (
+                <Pressable
+                  key={c.id}
+                  style={[s.tile, { flexBasis: `${100 / cols}%` }]}
+                  onPress={() => setCatId(c.id)}
+                >
+                  <View style={s.catInner}>
+                    <View
+                      style={[s.catIcon, { backgroundColor: tileColor(c.id) }]}
+                    >
+                      <Ionicons
+                        name="grid-outline"
+                        size={24}
+                        color={colors.text}
+                      />
+                    </View>
+                    <Text style={s.tileName} numberOfLines={2}>
+                      {c.name}
+                    </Text>
+                    <Text style={s.catCount}>
+                      {c.count} item{c.count === 1 ? "" : "s"}
+                    </Text>
+                  </View>
+                </Pressable>
+              ))}
+            </View>
+            {catCards.length === 0 ? (
+              <Text style={s.empty}>No categories match your search.</Text>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <View style={s.grid}>
+              {gridProducts.map((p) => {
+                const inCart = qtyById[p.id] ?? 0;
+                return (
+                  <Pressable
+                    key={p.id}
+                    style={[s.tile, { flexBasis: `${100 / cols}%` }]}
+                    onPress={() => add(p)}
+                  >
+                    <View style={s.tileInner}>
+                      <View
+                        style={[s.thumb, { backgroundColor: tileColor(p.id) }]}
+                      >
+                        <Text style={s.thumbText}>
+                          {p.name.charAt(0).toUpperCase()}
+                        </Text>
+                        {inCart > 0 ? (
+                          <View style={s.countBadge}>
+                            <Text style={s.countBadgeText}>{inCart}</Text>
+                          </View>
+                        ) : null}
+                      </View>
+                      <Text style={s.tileName} numberOfLines={2}>
+                        {p.name}
+                      </Text>
+                      <Text style={s.tilePrice}>{currency(p.price)}</Text>
+                    </View>
+                  </Pressable>
+                );
+              })}
+            </View>
+            {gridProducts.length === 0 ? (
+              <Text style={s.empty}>No products match your search.</Text>
+            ) : null}
+          </>
+        )}
       </ScrollView>
 
       {/* Sticky checkout bar (above the bottom nav) */}
@@ -175,6 +275,33 @@ const s = StyleSheet.create({
     outlineStyle: "none" as any,
   },
 
+  // Segmented pill tab bar
+  segment: {
+    flexDirection: "row",
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    padding: 4,
+    gap: 4,
+  },
+  segmentBtn: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 9,
+    borderRadius: radius.sm,
+  },
+  segmentBtnActive: { backgroundColor: colors.primary },
+  segmentText: { fontSize: 14, fontWeight: "700", color: colors.textMuted },
+  segmentTextActive: { color: "#fff" },
+
+  // Category drill-down breadcrumb
+  backRow: { flexDirection: "row", alignItems: "center", gap: 4 },
+  backText: { fontSize: 15, fontWeight: "600", color: colors.primary },
+  crumbSep: { fontSize: 15, color: colors.textMuted, marginHorizontal: 2 },
+  crumbCurrent: { fontSize: 15, fontWeight: "700", color: colors.text },
+
   gridContent: {
     padding: spacing.md,
     paddingBottom: 96,
@@ -225,6 +352,25 @@ const s = StyleSheet.create({
     minHeight: 36,
   },
   tilePrice: { fontSize: 15, fontWeight: "800", color: colors.primary },
+
+  // Category card (Categories tab, before drilling in)
+  catInner: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.md,
+    alignItems: "center",
+    gap: 8,
+  },
+  catIcon: {
+    width: 56,
+    height: 56,
+    borderRadius: radius.md,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  catCount: { fontSize: 13, fontWeight: "600", color: colors.textMuted },
   empty: { color: colors.textMuted, padding: spacing.md, textAlign: "center" },
 
   checkoutBar: {

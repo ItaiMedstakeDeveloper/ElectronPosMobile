@@ -34,6 +34,11 @@ export default function Users() {
 
   const isCashier = form.role === 'cashier';
 
+  // This screen manages the ACTIVE shop's own staff (managers + cashiers).
+  // Administrators are global "owners" that span all shops, so they aren't
+  // listed or created here.
+  const staff = users.filter((u) => u.role !== 'admin');
+
   const reload = () => db.getUsers().then(setUsers).catch(console.error);
   useEffect(() => {
     reload();
@@ -74,15 +79,7 @@ export default function Users() {
       if (!editId && !form.secret.trim()) return notify('Please set a password for the new user.');
     }
 
-    // Don't let the last active admin lose admin access (demotion or deactivation).
-    if (editId) {
-      const losesAdmin = form.role !== 'admin' || !form.active;
-      if (losesAdmin && (await db.countAdmins(editId)) === 0) {
-        return notify('There must be at least one active administrator.');
-      }
-    }
-
-    // Cashiers have no email; admins/managers have no phone-based login.
+    // Cashiers have no email; managers have no phone-based login.
     const email = isCashier ? null : form.email.trim();
     const phone = isCashier ? form.phone.trim() : form.phone.trim() || null;
 
@@ -117,19 +114,16 @@ export default function Users() {
 
   const remove = async (u: AppUser) => {
     if (u.id === currentUser?.id) return notify('You cannot delete the account you are signed in with.');
-    if (u.role === 'admin' && (await db.countAdmins(u.id)) === 0) {
-      return notify('There must be at least one active administrator.');
-    }
     confirmAction(`Delete "${u.name}"?`, () => db.deleteUser(u.id).then(reload).catch(console.error));
   };
 
   return (
     <Screen
       title="Users"
-      subtitle={`${users.length} staff account${users.length === 1 ? '' : 's'}`}
+      subtitle={`${staff.length} staff account${staff.length === 1 ? '' : 's'} in this shop`}
       action={<Button title="Add" icon="add" onPress={openAdd} />}
     >
-      {users.map((u) => (
+      {staff.map((u) => (
         <Card key={u.id}>
           <View style={s.row}>
             <View style={[s.avatar, u.role === 'admin' && s.avatarAdmin]}>
@@ -171,7 +165,6 @@ export default function Users() {
           value={form.role}
           onChange={(v) => set('role', v as UserRole)}
           options={[
-            { label: 'Administrator', value: 'admin' },
             { label: 'Manager', value: 'manager' },
             { label: 'Cashier', value: 'cashier' },
           ]}

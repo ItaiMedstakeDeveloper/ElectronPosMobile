@@ -12,6 +12,8 @@ import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors, spacing, radius } from "@/theme";
 import { NavMenu } from "@/components/NavMenu";
+import { ShopSwitcher } from "@/components/ShopSwitcher";
+import { TrialBadge } from "@/components/TrialBadge";
 import { useAuth, roleLabel } from "@/context/AuthContext";
 
 const PANEL_WIDTH = 288;
@@ -72,11 +74,14 @@ export function MobileDrawer({
             </Pressable>
           </View>
 
+          <ShopSwitcher />
+
           <ScrollView style={s.nav} showsVerticalScrollIndicator={false}>
             <NavMenu dark onNavigate={onClose} />
           </ScrollView>
 
           <View style={s.account}>
+            <TrialBadge />
             <View style={s.accountRow}>
               <Ionicons
                 name={

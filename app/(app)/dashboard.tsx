@@ -107,7 +107,7 @@ export default function Dashboard() {
     <View style={{ flex: 1 }}>
       <Screen title="Dashboard" subtitle="Overview of your point of sale">
         {/* Currency switch */}
-        <Text style={s.sectionTitle}>Currency</Text>
+        <Text style={s.sectionTitle}>Switch Currency</Text>
         <View style={s.currencyRow}>
           <CurrencyCard
             label=""

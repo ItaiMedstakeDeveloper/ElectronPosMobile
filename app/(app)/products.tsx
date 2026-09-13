@@ -17,6 +17,7 @@ type Form = {
   price: string;
   unit: Product['unit'];
   stock: string; // opening stock, only set at creation
+  reorderLevel: string; // optional low-stock threshold (0 / blank = no alert)
 };
 
 const emptyForm = (categoryId: string): Form => ({
@@ -28,6 +29,7 @@ const emptyForm = (categoryId: string): Form => ({
   price: '',
   unit: 'Each',
   stock: '0',
+  reorderLevel: '',
 });
 
 // All products are zero-rated for tax.
@@ -159,6 +161,7 @@ export default function Products() {
       price: String(p.price),
       unit: p.unit,
       stock: String(p.stock),
+      reorderLevel: p.reorderLevel ? String(p.reorderLevel) : '',
     });
     setModal(true);
   };
@@ -190,6 +193,10 @@ export default function Products() {
       return notify('Selling price must be a valid number of 0 or more.');
     }
 
+    // Optional low-stock threshold: blank / invalid means 0 (no alert).
+    const reorder = parseInt(form.reorderLevel, 10);
+    const reorderLevel = Number.isNaN(reorder) || reorder < 0 ? 0 : reorder;
+
     const base = {
       name,
       sku,
@@ -198,6 +205,7 @@ export default function Products() {
       cost,
       price,
       unit: form.unit,
+      reorderLevel,
     };
     if (editId) {
       // Opening stock is set once at creation; ongoing stock changes come from
@@ -210,7 +218,6 @@ export default function Products() {
         ...base,
         taxGroup: TAX_GROUP,
         stock: Number.isNaN(opening) || opening < 0 ? 0 : opening,
-        reorderLevel: 0,
       });
     }
     setModal(false);
@@ -378,6 +385,18 @@ export default function Products() {
             placeholder="0"
           />
         ) : null}
+        <View>
+          <TextField
+            label="Low Stock Threshold (optional)"
+            value={form.reorderLevel}
+            onChangeText={(v) => set('reorderLevel', v.replace(/[^0-9]/g, ''))}
+            keyboardType="number-pad"
+            placeholder="Leave blank for no alert"
+          />
+          <Text style={s.fieldHint}>
+            You'll be notified when available stock drops to this level or below.
+          </Text>
+        </View>
       </FormModal>
 
       {/* Add Stock / Write Off bottom drawer */}
@@ -503,4 +522,5 @@ const s = StyleSheet.create({
   stockProdName: { fontSize: 16, fontWeight: '700', color: colors.text, flex: 1 },
   stockProdMeta: { fontSize: 13, color: colors.textMuted },
   empty: { color: colors.textMuted, padding: spacing.md },
+  fieldHint: { fontSize: 12, color: colors.textMuted, marginTop: 4 },
 });

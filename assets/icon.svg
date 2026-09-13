@@ -1,0 +1,36 @@
+<svg viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="badgeClip">
+      <rect x="0" y="0" width="440" height="440" rx="96" ry="96"/>
+    </clipPath>
+  </defs>
+
+  <!-- Badge background -->
+  <rect x="0" y="0" width="440" height="440" rx="96" ry="96" fill="#12142B"/>
+
+  <g clip-path="url(#badgeClip)">
+    <!-- Orbit ring (rotated ellipse), sits behind the phone -->
+    <g transform="rotate(-24 220 220)">
+      <ellipse cx="220" cy="220" rx="152" ry="62" fill="none" stroke="#4C5FEB" stroke-width="7" opacity="0.9"/>
+      <!-- Electron node on the orbit -->
+      <circle cx="220" cy="220" r="0" fill="none"/>
+      <circle cx="220" cy="220" r="10" fill="#2FE6D0" transform="translate(142.9,-25.2)"/>
+    </g>
+
+    <!-- Phone body -->
+    <rect x="152" y="93" width="136" height="254" rx="26" ry="26" fill="#F4F5FA"/>
+    <rect x="152" y="93" width="136" height="254" rx="26" ry="26" fill="none" stroke="#12142B" stroke-width="4"/>
+
+    <!-- Phone screen -->
+    <rect x="166" y="118" width="108" height="180" rx="10" ry="10" fill="#12142B"/>
+
+    <!-- Speaker notch -->
+    <rect x="204" y="102" width="32" height="5" rx="2.5" fill="#12142B"/>
+
+    <!-- Home indicator -->
+    <rect x="200" y="323" width="40" height="6" rx="3" fill="#12142B"/>
+
+    <!-- Checkmark on screen: completed transaction -->
+    <path d="M188 210 L212 234 L256 182" fill="none" stroke="#2FE6D0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

@@ -18,9 +18,21 @@ type LicenseState = {
   customer: string | null;
   activate: (token: string) => Promise<ActivateResult>;
   refresh: () => Promise<void>;
+  // Free trial ("familiarisation period"). Self-serve: the user starts it once
+  // per device; it counts down independently of any signed licence.
+  trialStarted: boolean;
+  trialActive: boolean;
+  trialDaysLeft: number | null;
+  startTrial: () => Promise<void>;
 };
 
 const LicenseContext = createContext<LicenseState | null>(null);
+
+// Length of the free familiarisation period, in days. Single source of truth —
+// change this one number to change the trial length everywhere.
+export const TRIAL_DAYS = 27;
+
+const DAY_SEC = 86400;
 
 // Allow up to a day of backwards clock drift (timezone/NTP jitter) before we
 // treat a rolled-back clock as tampering.
@@ -43,6 +55,9 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
   const [expiresAt, setExpiresAt] = useState<Date | null>(null);
   const [daysLeft, setDaysLeft] = useState<number | null>(null);
   const [customer, setCustomer] = useState<string | null>(null);
+  const [trialStarted, setTrialStarted] = useState(false);
+  const [trialActive, setTrialActive] = useState(false);
+  const [trialDaysLeft, setTrialDaysLeft] = useState<number | null>(null);
 
   // Read the clock, but never let it appear to run backwards past the recorded
   // high-water mark (defeats setting the phone date back to dodge expiry).
@@ -93,9 +108,34 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Load the trial's remaining days from the stored start time, guarding against
+  // a rolled-back clock via the same monotonic time source as the licence.
+  const loadTrial = async () => {
+    let startedRaw = 0;
+    try {
+      const settings = await db.getAppSettings();
+      startedRaw = Number(settings['trial_started_at']) || 0;
+    } catch {
+      /* ignore */
+    }
+    if (startedRaw <= 0) {
+      setTrialStarted(false);
+      setTrialActive(false);
+      setTrialDaysLeft(null);
+      return;
+    }
+    const nowSec = await monotonicNowSec();
+    const endSec = startedRaw + TRIAL_DAYS * DAY_SEC;
+    const left = Math.max(0, Math.ceil((endSec - nowSec) / DAY_SEC));
+    setTrialStarted(true);
+    setTrialActive(left > 0);
+    setTrialDaysLeft(left);
+  };
+
   const refresh = async () => {
     const id = await getDeviceId();
     setDeviceId(id);
+    await loadTrial();
     let token = '';
     try {
       const settings = await db.getAppSettings();
@@ -112,6 +152,23 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
     }
     const nowSec = await monotonicNowSec();
     applyCheck(verifyLicense(token, id, nowSec));
+  };
+
+  // Begin the free trial once. No-op if it was already started (the start time
+  // is fixed on first call so the counter can't be reset by tapping again).
+  const startTrial = async () => {
+    try {
+      const settings = await db.getAppSettings();
+      if (Number(settings['trial_started_at']) > 0) {
+        await loadTrial();
+        return;
+      }
+      const nowSec = await monotonicNowSec();
+      await db.setAppSetting('trial_started_at', String(nowSec));
+    } catch (e) {
+      console.error('Could not start trial', e);
+    }
+    await loadTrial();
   };
 
   useEffect(() => {
@@ -139,9 +196,21 @@ export function LicenseProvider({ children }: { children: React.ReactNode }) {
   };
 
   const value = useMemo<LicenseState>(
-    () => ({ status, deviceId, expiresAt, daysLeft, customer, activate, refresh }),
+    () => ({
+      status,
+      deviceId,
+      expiresAt,
+      daysLeft,
+      customer,
+      activate,
+      refresh,
+      trialStarted,
+      trialActive,
+      trialDaysLeft,
+      startTrial,
+    }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [status, deviceId, expiresAt, daysLeft, customer],
+    [status, deviceId, expiresAt, daysLeft, customer, trialStarted, trialActive, trialDaysLeft],
   );
 
   return <LicenseContext.Provider value={value}>{children}</LicenseContext.Provider>;

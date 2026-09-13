@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { colors, spacing, radius } from '@/theme';
 import { NavMenu } from '@/components/NavMenu';
+import { ShopSwitcher } from '@/components/ShopSwitcher';
+import { TrialBadge } from '@/components/TrialBadge';
 import { useAuth, roleLabel } from '@/context/AuthContext';
 
 const initials = (s?: string | null) => {
@@ -35,11 +37,14 @@ export function Sidebar() {
         </View>
       </View>
 
+      <ShopSwitcher />
+
       <ScrollView style={s.nav} contentContainerStyle={s.navContent} showsVerticalScrollIndicator={false}>
         <NavMenu dark />
       </ScrollView>
 
       <View style={s.account}>
+        <TrialBadge />
         <View style={s.accountRow}>
           <View style={s.avatar}>
             <Text style={s.avatarText}>{initials(user?.name || user?.email)}</Text>

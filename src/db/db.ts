@@ -1,6 +1,7 @@
 import * as SQLite from "expo-sqlite";
 import * as seed from "@/data/mockData";
 import { hashPassword, verifyPassword } from "@/lib/hash";
+import { getMetaSettings, setMetaSetting } from "@/db/meta";
 import type {
     Category,
     Product,
@@ -30,8 +31,28 @@ import type {
 
 let dbPromise: Promise<SQLite.SQLiteDatabase> | null = null;
 
+// Which shop's data file is currently open. Each shop keeps all of its data in
+// its own SQLite file (see src/db/meta.ts); switching shops points `open()` at
+// a different file. "electronpos.db" is the original single-shop file, kept as
+// the default "Main Shop" so existing installs migrate seamlessly.
+let activeDbFile = "electronpos.db";
+
+// Point the data layer at a shop's file. Resets the cached handle so the next
+// `open()` connects to the new file. Callers must re-run `initDb()` and reload
+// their data afterwards (the provider tree remounts to do this).
+export function setActiveDbFile(file: string): void {
+    if (file && file !== activeDbFile) {
+        activeDbFile = file;
+        dbPromise = null;
+    }
+}
+
+export function getActiveDbFile(): string {
+    return activeDbFile;
+}
+
 function open() {
-    if (!dbPromise) dbPromise = SQLite.openDatabaseAsync("electronpos.db");
+    if (!dbPromise) dbPromise = SQLite.openDatabaseAsync(activeDbFile);
     return dbPromise;
 }
 
@@ -242,10 +263,6 @@ export async function initDb() {
       created_at TEXT,
       FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
     );
-    CREATE TABLE IF NOT EXISTS app_settings (
-      key TEXT PRIMARY KEY,
-      value TEXT
-    );
   `);
 
     // Migrate an older `users` table (email NOT NULL, no phone column) to the
@@ -296,50 +313,26 @@ export async function initDb() {
         }
     }
 
-    // Seed the initial login accounts once. Without at least one admin there is
-    // no way to sign in and create further users, so we bootstrap an admin
-    // (email + password) and a sample cashier (phone + numeric passcode). The
-    // credential is stored as a salted SHA-256 hash in the `password` column.
+    // Seed a sample cashier once per shop. Admin accounts are global "owners"
+    // that live in the meta store (see src/db/meta.ts) — a shop only holds its
+    // own managers and cashiers. The credential is stored as a salted SHA-256
+    // hash in the `password` column.
     const userRow = await db.getFirstAsync<{ c: number }>(
         "SELECT COUNT(*) as c FROM users",
     );
     if ((userRow?.c ?? 0) === 0) {
-        const seedUsers: {
-            name: string;
-            email: string | null;
-            phone: string | null;
-            secret: string; // password for admins, passcode for cashiers
-            role: UserRole;
-        }[] = [
-            {
-                name: "Administrator",
-                email: "admin@electronpos.co.zw",
-                phone: "+263771234567",
-                secret: "admin123",
-                role: "admin",
-            },
-            {
-                name: "Cashier",
-                email: null,
-                phone: "+263770000000",
-                secret: "1234",
-                role: "cashier",
-            },
-        ];
-        for (const u of seedUsers) {
-            const hashed = await hashPassword(u.secret);
-            await db.runAsync(
-                `INSERT INTO users (name, email, phone, password, role, active, created_at, updated_at)
+        const hashed = await hashPassword("1234");
+        await db.runAsync(
+            `INSERT INTO users (name, email, phone, password, role, active, created_at, updated_at)
          VALUES (?, ?, ?, ?, ?, 1, ?, ?)`,
-                u.name,
-                u.email,
-                u.phone,
-                hashed,
-                u.role,
-                today(),
-                today(),
-            );
-        }
+            "Cashier",
+            null,
+            "+263770000000",
+            hashed,
+            "cashier",
+            today(),
+            today(),
+        );
     }
 
     // Seed customers once, mapping the mock records onto the migration columns.
@@ -978,14 +971,16 @@ export async function countAdmins(excludeId?: string): Promise<number> {
     return row?.c ?? 0;
 }
 
-// Admin / manager sign-in: email + password. Cashiers cannot use this path.
-export async function authenticateAdmin(
+// Manager sign-in: email + password, scoped to the active shop. Global admins
+// (owners) authenticate against the meta store instead (see meta.authenticateOwner);
+// cashiers use phone + passcode below.
+export async function authenticateManager(
     email: string,
     password: string,
 ): Promise<AppUser | null> {
     const db = await open();
     const row = await db.getFirstAsync<any>(
-        "SELECT * FROM users WHERE email = ? AND role IN ('admin','manager')",
+        "SELECT * FROM users WHERE email = ? AND role = 'manager'",
         normEmail(email),
     );
     if (!row || !row.active) return null;
@@ -1006,29 +1001,6 @@ export async function authenticateCashier(
     if (!row || !row.active) return null;
     const ok = await verifyPassword(passcode, row.password);
     return ok ? mapUser(row) : null;
-}
-
-// Admin self-registration. Creates an active admin account and returns it.
-export async function registerAdmin(input: {
-    name: string;
-    email: string;
-    phone?: string | null;
-    password: string;
-}): Promise<AppUser> {
-    await createUser({
-        name: input.name,
-        email: input.email,
-        phone: input.phone ?? null,
-        secret: input.password,
-        role: "admin",
-        active: true,
-    });
-    const db = await open();
-    const row = await db.getFirstAsync<any>(
-        "SELECT * FROM users WHERE email = ?",
-        normEmail(input.email),
-    );
-    return mapUser(row);
 }
 
 // ---- Sales + Reports ----
@@ -1231,25 +1203,17 @@ export async function writeOffStock(productId: string, quantity: number, note?: 
 }
 
 // ---- App settings (key/value) ----
+// These are device-level, not per-shop (licence token, display currency), so
+// they live in the shared meta store rather than any single shop's file. The
+// signatures are unchanged, so existing callers (LicenseContext, DataContext)
+// keep working across shop switches.
 
 export async function getAppSettings(): Promise<Record<string, string>> {
-    const db = await open();
-    const rows = await db.getAllAsync<{ key: string; value: string }>(
-        'SELECT key, value FROM app_settings',
-    );
-    const map: Record<string, string> = {};
-    for (const r of rows) map[r.key] = r.value;
-    return map;
+    return getMetaSettings();
 }
 
 export async function setAppSetting(key: string, value: string): Promise<void> {
-    const db = await open();
-    await db.runAsync(
-        `INSERT INTO app_settings (key, value) VALUES (?, ?)
-         ON CONFLICT(key) DO UPDATE SET value = excluded.value`,
-        key,
-        value,
-    );
+    return setMetaSetting(key, value);
 }
 
 // ---- Report queries ----

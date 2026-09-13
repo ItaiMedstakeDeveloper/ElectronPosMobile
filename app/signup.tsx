@@ -37,6 +37,8 @@ export default function SignUp() {
         const res = await register({ name, email, phone, password });
         setBusy(false);
         if (!res.ok) return setError(res.error);
+        // Go home; the app's trial/licence gate routes new, unlicensed accounts
+        // to the free-trial offer (see app/(app)/_layout.tsx).
         router.replace(homeFor(res.user.role) as any);
     };
 

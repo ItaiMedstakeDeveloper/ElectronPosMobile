@@ -95,6 +95,12 @@ export const navSections: NavSection[] = [
     children: [{ label: "View Users", href: "/users", icon: "person-outline" }],
   },
   {
+    type: "link",
+    label: "Shops",
+    href: "/shops",
+    icon: "storefront-outline",
+  },
+  {
     type: "group",
     label: "Reports",
     icon: "bar-chart-outline",
@@ -143,8 +149,10 @@ export function canAccess(role: UserRole | null, pathname: string): boolean {
       (p) => pathname === p || pathname.startsWith(p + "/"),
     );
   }
-  // Only admins manage users.
+  // Only admins manage users and shops.
   if (pathname === "/users" || pathname.startsWith("/users/"))
+    return role === "admin";
+  if (pathname === "/shops" || pathname.startsWith("/shops/"))
     return role === "admin";
   return true;
 }
@@ -173,9 +181,11 @@ const cashierNav: NavSection[] = [
 export function navSectionsFor(role: UserRole | null): NavSection[] {
   if (role === "cashier") return cashierNav;
   if (role === "manager") {
-    // Managers see everything except user management.
+    // Managers see everything except user management and shop administration.
     return navSections.filter(
-      (s) => !(s.type === "group" && s.label === "Users"),
+      (s) =>
+        !(s.type === "group" && s.label === "Users") &&
+        !(s.type === "link" && s.label === "Shops"),
     );
   }
   return navSections; // admin

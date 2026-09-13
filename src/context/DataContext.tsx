@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import * as seed from "@/data/mockData";
 import * as db from "@/db/db";
+import { initNotifications, notifyLowStock } from "@/lib/notifications";
 import { setCurrencyConfig, type CurrencyCode } from "@/theme";
 import type {
     Category,
@@ -122,6 +123,11 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     const [currencyCode, setCurrencyCode] = useState<CurrencyCode>("USD");
     const [exchangeRate, setExchangeRate] = useState(1);
     const backend = useRef<"sqlite" | "memory">("memory");
+    // Low-stock notifications: set up permissions once, then track which products
+    // we've already alerted for so we notify only when a product first drops to
+    // (or below) its threshold — not on every reload.
+    const [notifReady, setNotifReady] = useState(false);
+    const notifiedLow = useRef<Set<string>>(new Set());
 
     const reloadCats = async () => setCats(await db.getCategories());
     const reloadProds = async () => setProds(await db.getProducts());
@@ -466,6 +472,31 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     // Opening stock + received via GRVs - sold via sales.
     const availableStock = (product: Product) =>
         product.stock + (stockLevels[product.id]?.received ?? 0) - (soldQty[product.id] ?? 0);
+
+    // Request notification permission + set up the channel once, on mount.
+    useEffect(() => {
+        initNotifications().finally(() => setNotifReady(true));
+    }, []);
+
+    // Watch stock levels and fire a local notification whenever a product with a
+    // threshold set (reorderLevel > 0) drops to or below it. We alert once per
+    // "descent": a product is re-armed only after it recovers above its
+    // threshold, so restocking then selling down again alerts afresh.
+    useEffect(() => {
+        if (!notifReady) return;
+        for (const p of prods) {
+            if (!p.reorderLevel || p.reorderLevel <= 0) continue;
+            const available =
+                p.stock + (stockLevels[p.id]?.received ?? 0) - (soldQty[p.id] ?? 0);
+            const isLow = available <= p.reorderLevel;
+            if (isLow && !notifiedLow.current.has(p.id)) {
+                notifiedLow.current.add(p.id);
+                notifyLowStock(p.name, available, p.reorderLevel);
+            } else if (!isLow && notifiedLow.current.has(p.id)) {
+                notifiedLow.current.delete(p.id);
+            }
+        }
+    }, [notifReady, prods, stockLevels, soldQty]);
 
     const value = useMemo<DataState>(
         () => ({

@@ -7,12 +7,14 @@ import { BottomTabs } from '@/components/BottomTabs';
 import { MobileDrawer } from '@/components/MobileDrawer';
 import { BREAKPOINT_WIDE, colors } from '@/theme';
 import { useAuth } from '@/context/AuthContext';
+import { useLicense } from '@/context/LicenseContext';
 import { canAccess, homeFor } from '@/navigation';
 
 // Chrome for the authenticated POS. Wide screens get the persistent side rail;
 // narrow (mobile) screens get the bottom tab bar plus a slide-out drawer.
 export default function AppLayout() {
   const { role } = useAuth();
+  const { status: licenseStatus, trialStarted } = useLicense();
   const { width } = useWindowDimensions();
   const pathname = usePathname();
   const wide = width >= BREAKPOINT_WIDE;
@@ -28,6 +30,15 @@ export default function AppLayout() {
 
   // Guard: no session -> back to the sign-in screen.
   if (!role) return <Redirect href="/" />;
+
+  // Trial/licence gate: a signed-in user on an unlicensed device that hasn't
+  // started its free trial is sent to the trial offer — so it appears both right
+  // after registration AND on later logins, until the trial is started (or a
+  // paid licence is active). We wait for the licence check to finish ('loading')
+  // to avoid briefly flashing the offer to users who already have a trial.
+  if (licenseStatus !== 'loading' && licenseStatus !== 'active' && !trialStarted) {
+    return <Redirect href={'/trial' as any} />;
+  }
 
   // Role guard: keep cashiers in the checkout flow and user management admin-only.
   // Redirect any disallowed screen to the role's home.

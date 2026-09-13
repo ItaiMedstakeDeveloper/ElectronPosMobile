@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { Screen, Card, Badge } from '@/components/ui';
 import { colors, spacing, radius, currency } from '@/theme';
 import { useData } from '@/context/DataContext';
-import { confirmAction } from '@/lib/confirm';
 import { printReceipt } from '@/lib/printer';
 import type { ReceiptData } from '@/lib/receipt';
 import type { SaleRecord } from '@/db/db';
@@ -49,7 +48,7 @@ function rangeFor(key: PeriodKey): [string, string] | null {
 }
 
 export default function Sales() {
-  const { listSales, reverseSale, company, printer } = useData();
+  const { listSales, company, printer } = useData();
   const [period, setPeriod] = useState<PeriodKey>('today');
   const [pickerOpen, setPickerOpen] = useState(false);
   const [sales, setSales] = useState<SaleRecord[]>([]);
@@ -105,21 +104,6 @@ export default function Sales() {
     } finally {
       setBusyId(null);
     }
-  };
-
-  const doReverse = (sale: SaleRecord) => {
-    confirmAction(
-      `Reverse sale INV-${sale.id} for ${currency(sale.total)}? Its items return to stock and it is removed from reports.`,
-      async () => {
-        setBusyId(sale.id);
-        try {
-          await reverseSale(sale.id);
-          await load();
-        } finally {
-          setBusyId(null);
-        }
-      }
-    );
   };
 
   return (
@@ -194,16 +178,6 @@ export default function Sales() {
                   <DetailLine label="Date" value={new Date(sale.createdAt).toLocaleString()} />
 
                   <View style={s.actions}>
-                    <Pressable
-                      style={[s.actionBtn, s.reverseBtn, (sale.reversed || busyId === sale.id) && s.disabled]}
-                      disabled={sale.reversed || busyId === sale.id}
-                      onPress={() => doReverse(sale)}
-                    >
-                      <Ionicons name="return-down-back-outline" size={18} color={sale.reversed ? colors.textMuted : colors.danger} />
-                      <Text style={[s.reverseText, sale.reversed && { color: colors.textMuted }]}>
-                        {sale.reversed ? 'Reversed' : 'Reverse'}
-                      </Text>
-                    </Pressable>
                     <Pressable
                       style={[s.actionBtn, s.reprintBtn, busyId === sale.id && s.disabled]}
                       disabled={busyId === sale.id}
@@ -317,8 +291,6 @@ const s = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: radius.md,
   },
-  reverseBtn: { borderWidth: 1, borderColor: colors.danger, backgroundColor: colors.surface },
-  reverseText: { color: colors.danger, fontWeight: '700', fontSize: 14 },
   reprintBtn: { backgroundColor: colors.primary },
   reprintText: { color: '#fff', fontWeight: '700', fontSize: 14 },
   disabled: { opacity: 0.5 },

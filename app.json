@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "orientation": "default",
     "scheme": "electronpos",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "ios": {
@@ -18,7 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#2b2b2b"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#12142B"
       },
       "permissions": [
         "android.permission.BLUETOOTH",
@@ -36,7 +38,8 @@
     "plugins": [
       "expo-router",
       "expo-font",
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true

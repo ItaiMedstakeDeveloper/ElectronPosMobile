@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import * as db from '@/db/db';
+import * as meta from '@/db/meta';
 import type { AppUser, UserRole } from '@/data/mockData';
 
-// Authentication backed by the local SQLite `users` table.
-//   • Admins / managers sign in with email + password.
-//   • Cashiers sign in with phone + a numeric passcode (max 6 digits).
+// Authentication for the multi-shop app.
+//   • Admins are global "owners" (meta store) — they sign in with email +
+//     password and can switch between shops.
+//   • Managers sign in with email + password against the ACTIVE shop.
+//   • Cashiers sign in with phone + a numeric passcode against the active shop.
 // An account's role decides what it can see: admins/managers get the full app,
 // cashiers are limited to the checkout flow (see app/(app)/_layout.tsx).
 export type Role = UserRole;
@@ -41,7 +44,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           return { ok: false, error: 'Enter your email and password.' };
         }
         try {
-          const authed = await db.authenticateAdmin(email, password);
+          // Global owner (admin) first, then a manager of the active shop.
+          const authed =
+            (await meta.authenticateOwner(email, password)) ??
+            (await db.authenticateManager(email, password));
           if (!authed) return { ok: false, error: 'Invalid email or password.' };
           setUser(authed);
           return { ok: true, user: authed };
@@ -71,7 +77,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           return { ok: false, error: 'Password must be at least 6 characters.' };
         }
         try {
-          const created = await db.registerAdmin({ name: name.trim(), email, phone, password });
+          const created = await meta.registerOwner({ name: name.trim(), email, phone, password });
           setUser(created);
           return { ok: true, user: created };
         } catch (e: any) {

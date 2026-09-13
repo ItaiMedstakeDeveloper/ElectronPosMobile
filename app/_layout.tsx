@@ -16,7 +16,7 @@ import { colors } from '@/theme';
 // reloading everything. The signed-in owner (AuthProvider) sits outside that key
 // so they stay signed in across shop switches.
 function ShopScopedApp() {
-  const { ready, activeShopId } = useShop();
+  const { ready, activeShopId, reloadNonce } = useShop();
 
   if (!ready) {
     return (
@@ -30,7 +30,7 @@ function ShopScopedApp() {
     // LicenseProvider is device-wide (trial + licence), so it sits OUTSIDE the
     // shop key — switching shops must not reset the trial countdown.
     <LicenseProvider>
-      <DataProvider key={activeShopId ?? 'none'}>
+      <DataProvider key={`${activeShopId ?? 'none'}:${reloadNonce}`}>
         <CartProvider>
           <StatusBar style="dark" />
           <Stack

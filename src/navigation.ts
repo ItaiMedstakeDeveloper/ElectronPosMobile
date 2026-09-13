@@ -101,6 +101,12 @@ export const navSections: NavSection[] = [
     icon: "storefront-outline",
   },
   {
+    type: "link",
+    label: "Backup",
+    href: "/backup",
+    icon: "cloud-upload-outline",
+  },
+  {
     type: "group",
     label: "Reports",
     icon: "bar-chart-outline",
@@ -154,6 +160,8 @@ export function canAccess(role: UserRole | null, pathname: string): boolean {
     return role === "admin";
   if (pathname === "/shops" || pathname.startsWith("/shops/"))
     return role === "admin";
+  if (pathname === "/backup" || pathname.startsWith("/backup/"))
+    return role === "admin";
   return true;
 }
 
@@ -185,7 +193,8 @@ export function navSectionsFor(role: UserRole | null): NavSection[] {
     return navSections.filter(
       (s) =>
         !(s.type === "group" && s.label === "Users") &&
-        !(s.type === "link" && s.label === "Shops"),
+        !(s.type === "link" && s.label === "Shops") &&
+        !(s.type === "link" && s.label === "Backup"),
     );
   }
   return navSections; // admin

@@ -56,6 +56,19 @@ function open() {
     return dbPromise;
 }
 
+// Close the active shop connection so its file can be overwritten (used by
+// restore). The next open() reopens the current active file.
+export async function closeActiveDb(): Promise<void> {
+    if (!dbPromise) return;
+    try {
+        const db = await dbPromise;
+        await db.closeAsync();
+    } catch {
+        /* already closed */
+    }
+    dbPromise = null;
+}
+
 const today = () => new Date().toISOString().slice(0, 10);
 const now = () => new Date().toISOString();
 

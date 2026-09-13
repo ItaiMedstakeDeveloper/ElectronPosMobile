@@ -23,6 +23,19 @@ function openMeta() {
     return metaPromise;
 }
 
+// Close the meta connection so its file can be overwritten (used by restore).
+// The next call to openMeta() reopens it.
+export async function closeMeta(): Promise<void> {
+    if (!metaPromise) return;
+    try {
+        const db = await metaPromise;
+        await db.closeAsync();
+    } catch {
+        /* already closed */
+    }
+    metaPromise = null;
+}
+
 const today = () => new Date().toISOString().slice(0, 10);
 
 const normEmail = (email?: string | null): string | null => {

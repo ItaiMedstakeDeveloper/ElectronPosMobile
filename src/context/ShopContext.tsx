@@ -22,6 +22,9 @@ type ShopState = {
     activeShop: Shop | null;
     activeShopId: string | null;
     switching: boolean;
+    // Bumped after a restore to force the data providers to remount and reload
+    // from the freshly-written database files (see app/_layout.tsx).
+    reloadNonce: number;
     refresh: () => Promise<void>;
     createShop: (input: {
         name: string;
@@ -31,6 +34,8 @@ type ShopState = {
     switchShop: (id: string) => Promise<void>;
     setDefault: (id: string) => Promise<void>;
     removeShop: (id: string) => Promise<void>;
+    // Re-read the shop registry and reload all data after a backup restore.
+    reloadAfterRestore: () => Promise<void>;
 };
 
 const ShopContext = createContext<ShopState | null>(null);
@@ -40,6 +45,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     const [shops, setShops] = useState<Shop[]>([]);
     const [activeShopId, setActiveShopId] = useState<string | null>(null);
     const [switching, setSwitching] = useState(false);
+    const [reloadNonce, setReloadNonce] = useState(0);
 
     const refresh = async () => {
         setShops(await meta.listShops());
@@ -116,6 +122,27 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
         await refresh();
     };
 
+    // Called after a backup has overwritten the database files. Re-reads the shop
+    // registry, points the data layer at the (possibly changed) active shop, and
+    // bumps the nonce so the data providers remount and reload from disk.
+    const reloadAfterRestore = async () => {
+        try {
+            const list = await meta.listShops();
+            const activeId = await meta.getActiveShopId();
+            const active =
+                list.find((s) => s.id === activeId) ??
+                list.find((s) => s.isDefault) ??
+                list[0] ??
+                null;
+            if (active) db.setActiveDbFile(active.dbFile);
+            setShops(list);
+            setActiveShopId(active?.id ?? null);
+            setReloadNonce((n) => n + 1);
+        } catch (e) {
+            console.error("Reload after restore failed", e);
+        }
+    };
+
     const activeShop = useMemo(
         () => shops.find((s) => s.id === activeShopId) ?? null,
         [shops, activeShopId],
@@ -128,13 +155,15 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
             activeShop,
             activeShopId,
             switching,
+            reloadNonce,
             refresh,
             createShop,
             switchShop,
             setDefault,
             removeShop,
+            reloadAfterRestore,
         }),
-        [ready, shops, activeShop, activeShopId, switching],
+        [ready, shops, activeShop, activeShopId, switching, reloadNonce],
     );
 
     return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
